@@ -8,6 +8,8 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1 or /restaurants/1.json
   def show
+      @restaurant = Restaurant.find(params[:id])
+      @review = @restaurant.reviews.build
   end
 
   # GET /restaurants/new
@@ -64,7 +66,8 @@ class RestaurantsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
+
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address, :rating)
+      params.require(:restaurant).permit(:name, :address, :rating, :phone_number, :category)
     end
-end
+  end
